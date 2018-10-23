@@ -14,6 +14,6 @@ The robot should move when you press <kbd>a</kbd>, <kbd>w</kbd>, <kbd>s</kbd>, o
 ## Dependencies
 
 * `rospy`
-  `sys`
+* `sys`
 * `sensor_msgs`
 * `duckietown_msgs`
