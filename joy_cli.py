@@ -15,13 +15,13 @@ def keyCatcher(host):
     while not rospy.is_shutdown():
         direction = raw_input('Enter direction(a,w,s,d)--> ')
         if direction == 'w':
-            axes = [0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] 
+            axes = [0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
         elif direction == 's':
-            axes = [0.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] 
+            axes = [0.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
         elif direction == 'd':
-            axes = [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0] 
-        elif direction == 'a':
             axes = [0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0] 
+        elif direction == 'a':
+            axes = [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0]
         else:
             axes = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
@@ -43,4 +43,3 @@ if __name__ == '__main__':
         keyCatcher(host = hostname)
     except rospy.ROSInterruptException:
         pass
-
