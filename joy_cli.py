@@ -12,6 +12,8 @@ def keyCatcher(host):
     pub = rospy.Publisher('/'+host+'/joy', Joy, queue_size=1)
     rospy.init_node('joy-cli', anonymous=True)
 
+    buttons = [0] * 11
+
     while not rospy.is_shutdown():
         direction = raw_input('Enter direction(a,w,s,d)--> ')
         if direction == 'w':
@@ -19,18 +21,18 @@ def keyCatcher(host):
         elif direction == 's':
             axes = [0.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
         elif direction == 'd':
-            axes = [0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0] 
+            axes = [0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0]
         elif direction == 'a':
             axes = [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0]
         else:
             axes = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
-        msg = Joy(header=None, axes=axes, buttons=None)
+        msg = Joy(header=None, axes=axes, buttons=buttons)
         pub.publish(msg)
         rospy.sleep(0.5)
 
         axes = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-        msg = Joy(header=None, axes=axes, buttons=None)
+        msg = Joy(header=None, axes=axes, buttons=buttons)
         pub.publish(msg)
 
 if __name__ == '__main__':
