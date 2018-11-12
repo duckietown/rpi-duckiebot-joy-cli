@@ -15,15 +15,24 @@ def keyCatcher(host):
     buttons = [0] * 11
 
     while not rospy.is_shutdown():
-        direction = raw_input('Enter direction(a,w,s,d)--> ')
-        if direction == 'w':
+        input = raw_input('Enter direction(a,w,s,d) or lane-follow(start,stop)--> ')
+
+        if input == 'w':
             axes = [0.0, 1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-        elif direction == 's':
+        elif input == 's':
             axes = [0.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
-        elif direction == 'd':
-            axes = [0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0]
-        elif direction == 'a':
+        elif input == 'd':
             axes = [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0]
+        elif input == 'a':
+            axes = [0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0]
+        elif input == 'start':
+            # sends START to joystick (#7) to start lane-follow
+            buttons[7] = 1
+            axes = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+        elif input == 'stop':
+            # sends BACK to joystick (#6) to stop lane-follow
+            buttons[6] = 1
+            axes = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
         else:
             axes = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
 
@@ -31,6 +40,7 @@ def keyCatcher(host):
         pub.publish(msg)
         rospy.sleep(0.5)
 
+        buttons = [0] * 11
         axes = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
         msg = Joy(header=None, axes=axes, buttons=buttons)
         pub.publish(msg)
