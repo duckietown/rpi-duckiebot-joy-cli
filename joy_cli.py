@@ -22,9 +22,9 @@ def keyCatcher(host):
         elif input == 's':
             axes = [0.0, -1.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
         elif input == 'd':
-            axes = [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0]
-        elif input == 'a':
             axes = [0.0, 0.0, 0.0, -1.0, 0.0, 0.0, 0.0, 0.0]
+        elif input == 'a':
+            axes = [0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 0.0]
         elif input == 'start':
             # sends START to joystick (#7) to start lane-follow
             buttons[7] = 1
